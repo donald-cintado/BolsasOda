@@ -1,0 +1,344 @@
+<!doctype html>
+<html lang="pt">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BolsasOda - Bolsas Artesanais Tecidas à Mão</title>
+    <link rel="icon" type="image/svg+xml" href="logo.svg" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Lato:wght@300;400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- Header -->
+    <header>
+      <nav>
+        <a href="#" class="logo">
+          <img src="logo.svg" alt="BolsasOda" class="logo-img" />
+          <span class="logo-text">BolsasOda</span>
+        </a>
+        <ul class="nav-links">
+          <li><a href="#inicio">Início</a></li>
+          <li><a href="#produtos">Produtos</a></li>
+          <li><a href="#sobre">Sobre</a></li>
+          <li><a href="#contato">Contato</a></li>
+        </ul>
+        <div class="header-actions">
+          <button class="cart-button" onclick="openCart()">
+            🛒 <span class="cart-count">0</span>
+          </button>
+          <button class="cta-button" onclick="scrollToSection('produtos')">
+            Ver Coleção
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="inicio">
+      <div class="hero-content">
+        <h1>Bolsas Tecidas à Mão</h1>
+        <p>
+          Arte único e exclusivo. Cada bolsa é elaborada com dedicação e
+          materiais de primeira qualidade por artesãos expertos.
+        </p>
+        <button class="cta-button" onclick="scrollToSection('produtos')">
+          Descubra Nossa Coleção
+        </button>
+      </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products" id="produtos">
+      <h2 class="section-title">Nossa Coleção</h2>
+      <p class="section-subtitle">Peças únicas feitas com amor e dedicação</p>
+
+      <div class="products-grid">
+        <!-- Product 1 -->
+        <div class="product-card">
+          <div class="product-image">
+            <img
+              src="https://images.unsplash.com/photo-1590874103328-eac38a683ce7?w=400"
+              alt="Bolso tejida"
+            />
+          </div>
+          <div class="product-info">
+            <h3 class="product-name">Bolsa Clássica Terracota</h3>
+            <p class="product-description">
+              Tecido artesanal com fios de algodão natural. Perfeito para o dia
+              a dia.
+            </p>
+            <div class="product-price">R$ 289,00</div>
+            <button
+              class="product-button"
+              onclick="showModal('Bolsa Clássica Terracota')"
+            >
+              Comprar Agora
+            </button>
+          </div>
+        </div>
+
+        <!-- Product 2 -->
+        <div class="product-card">
+          <div class="product-image">
+            <img
+              src="https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=400"
+              alt="Bolso tejida"
+            />
+          </div>
+          <div class="product-info">
+            <h3 class="product-name">Bolsa Vintage Marrom</h3>
+            <p class="product-description">
+              Design tradicional com detalhes em couro. Elegância atemporal.
+            </p>
+            <div class="product-price">R$ 349,00</div>
+            <button
+              class="product-button"
+              onclick="showModal('Bolsa Vintage Marrom')"
+            >
+              Comprar Agora
+            </button>
+          </div>
+        </div>
+
+        <!-- Product 3 -->
+        <div class="product-card">
+          <div class="product-image">
+            <img
+              src="https://images.unsplash.com/photo-1591561954557-26941169b49e?w=400"
+              alt="Bolso tejida"
+            />
+          </div>
+          <div class="product-info">
+            <h3 class="product-name">Bolsa Boho Natural</h3>
+            <p class="product-description">
+              Tecido com fibras naturais. Ideal para o verão e ocasiões casuais.
+            </p>
+            <div class="product-price">R$ 259,00</div>
+            <button
+              class="product-button"
+              onclick="showModal('Bolsa Boho Natural')"
+            >
+              Comprar Agora
+            </button>
+          </div>
+        </div>
+
+        <!-- Product 4 -->
+        <div class="product-card">
+          <div class="product-image">
+            <img
+              src="https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=400"
+              alt="Bolso tejida"
+            />
+          </div>
+          <div class="product-info">
+            <h3 class="product-name">Bolsa Premium Couro</h3>
+            <p class="product-description">
+              Combinação de tecido artesanal com couro legítimo. Luxo artesanal.
+            </p>
+            <div class="product-price">R$ 459,00</div>
+            <button
+              class="product-button"
+              onclick="showModal('Bolsa Premium Couro')"
+            >
+              Comprar Agora
+            </button>
+          </div>
+        </div>
+
+        <!-- Product 5 -->
+        <div class="product-card">
+          <div class="product-image">
+            <img
+              src="https://images.unsplash.com/photo-1566150905458-1bf1fc113f0d?w=400"
+              alt="Bolso tejida"
+            />
+          </div>
+          <div class="product-info">
+            <h3 class="product-name">Bolsa Cores do Arco-Íris</h3>
+            <p class="product-description">
+              Cores vibrantes tecidas à mão. Uma peça que chama a atenção.
+            </p>
+            <div class="product-price">R$ 319,00</div>
+            <button
+              class="product-button"
+              onclick="showModal('Bolsa Cores do Arco-Íris')"
+            >
+              Comprar Agora
+            </button>
+          </div>
+        </div>
+
+        <!-- Product 6 -->
+        <div class="product-card">
+          <div class="product-image">
+            <img
+              src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=400"
+              alt="Bolso tejida"
+            />
+          </div>
+          <div class="product-info">
+            <h3 class="product-name">Bolsa Tote Artesanal</h3>
+            <p class="product-description">
+              Espaçosa e resistente. Perfeita para o trabalho ou a universidade.
+            </p>
+            <div class="product-price">R$ 379,00</div>
+            <button
+              class="product-button"
+              onclick="showModal('Bolsa Tote Artesanal')"
+            >
+              Comprar Agora
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="sobre">
+      <div class="about-content">
+        <div class="about-text">
+          <h2>Artesania com Alma</h2>
+          <p>
+            Cada bolsa que criamos conta uma história. Nossos artesãos dedicam
+            horas para tecer cada peça com suas mãos, utilizando técnicas
+            tradicionais transmitidas de geração em geração.
+          </p>
+          <p>
+            Utilizamos apenas materiais de primeira qualidade: fios de algodão
+            orgânico, fibras naturais e couro legítimo. Isso garante não apenas
+            a beleza de nossas peças, mas também sua durabilidade.
+          </p>
+          <p>
+            Ao comprar uma de nossas bolsas, você não adquire apenas um
+            acessório único, mas apoia famílias artesãs e mantém viva uma
+            tradição milenar.
+          </p>
+        </div>
+        <div class="about-image">
+          <img
+            src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600"
+            alt="Artesano tejiendo"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+      <h2 class="section-title">Por Que Escolher-nos?</h2>
+      <p class="section-subtitle">Qualidade e autenticidade em cada ponto</p>
+
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">🧵</div>
+          <h3>100% Artesanal</h3>
+          <p>
+            Cada peça é tecida à mão por artesãos expertos com anos de
+            experiência.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">🌿</div>
+          <h3>Materiais Naturais</h3>
+          <p>
+            Utilizamos algodão orgânico, fibras naturais e couro de qualidade
+            premium.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">✨</div>
+          <h3>Design Exclusivo</h3>
+          <p>Criações únicas que você não encontrará em nenhum outro lugar.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">💝</div>
+          <h3>Feito com Amor</h3>
+          <p>Peças criadas com dedicação e paixão pela arte de tecer.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contato">
+      <h2>Fale Conosco!</h2>
+      <p>
+        Tem alguma pergunta ou quer fazer um pedido personalizado? Escreva para
+        nós.
+      </p>
+
+      <form class="contact-form" onsubmit="submitForm(event)">
+        <input type="text" placeholder="Seu nome" required />
+        <input type="email" placeholder="Seu e-mail" required />
+        <textarea placeholder="Sua mensagem..." required></textarea>
+        <button type="submit">Enviar Mensagem</button>
+      </form>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <p>© 2026 Bolsas Artesanais - Tecidas à Mão com ❤️</p>
+    </footer>
+
+    <!-- Modal -->
+    <div class="modal" id="modal">
+      <div class="modal-content">
+        <h3>Obrigado pelo seu interesse!</h3>
+        <p>O <span id="product-name"></span> foi adicionado ao seu carrinho.</p>
+        <p>Entraremos em contato com você para completar a compra.</p>
+        <button class="modal-close" onclick="closeModal()">Fechar</button>
+      </div>
+    </div>
+
+    <!-- Cart Modal -->
+    <div class="modal" id="cart-modal">
+      <div class="modal-content cart-modal-content">
+        <div class="cart-header">
+          <h3>🛒 Seu Carrinho</h3>
+          <button class="cart-close" onclick="closeCart()">✕</button>
+        </div>
+
+        <div class="cart-items" id="cart-items">
+          <p class="cart-empty">Seu carrinho está vazio</p>
+        </div>
+
+        <div class="cart-coupon">
+          <input type="text" id="coupon-input" placeholder="Código do cupom" />
+          <button class="coupon-btn" onclick="applyCoupon()">Aplicar</button>
+        </div>
+        <p class="coupon-message" id="coupon-message"></p>
+
+        <div class="cart-summary">
+          <div class="cart-row">
+            <span>Subtotal:</span>
+            <span id="cart-subtotal">R$ 0,00</span>
+          </div>
+          <div
+            class="cart-row discount-row"
+            id="discount-row"
+            style="display: none"
+          >
+            <span>Desconto:</span>
+            <span id="cart-discount">-R$ 0,00</span>
+          </div>
+          <div class="cart-row total-row">
+            <span>Total:</span>
+            <span id="cart-total">R$ 0,00</span>
+          </div>
+        </div>
+
+        <button class="checkout-btn" onclick="checkout()">
+          Finalizar Compra
+        </button>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

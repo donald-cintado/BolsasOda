@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 60" width="200" height="60">
+  <defs>
+    <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#8B4513"/>
+      <stop offset="100%" style="stop-color:#D2691E"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Bag Icon -->
+  <g transform="translate(10, 8)">
+    <!-- Bag body -->
+    <path d="M5 15 L5 40 Q5 45 10 45 L35 45 Q40 45 40 40 L40 15 Q40 10 35 10 L10 10 Q5 10 5 15 Z" 
+          fill="url(#logoGradient)" opacity="0.9"/>
+    <!-- Bag handle -->
+    <path d="M12 10 Q12 2 22.5 2 Q33 2 33 10" 
+          fill="none" stroke="url(#logoGradient)" stroke-width="3" stroke-linecap="round"/>
+    <!-- Bag flap -->
+    <path d="M8 20 Q22.5 25 37 20 L37 25 Q22.5 30 8 25 Z" 
+          fill="#F5DEB3" opacity="0.8"/>
+    <!-- Stitching detail -->
+    <line x1="10" y1="35" x2="35" y2="35" stroke="#F5DEB3" stroke-width="1" stroke-dasharray="3,2"/>
+    <line x1="10" y1="40" x2="35" y2="40" stroke="#F5DEB3" stroke-width="1" stroke-dasharray="3,2"/>
+  </g>
+  
+  <!-- Brand Text -->
+  <text x="60" y="38" font-family="Playfair Display, serif" font-size="28" font-weight="700" fill="#2C1810">
+    Bolsas<tspan fill="url(#logoGradient)">Oda</tspan>
+  </text>
+  
+  <!-- Tagline -->
+  <text x="60" y="50" font-family="Lato, sans-serif" font-size="10" fill="#666" letter-spacing="2">
+    ARTESANAIS
+  </text>
+</svg>
