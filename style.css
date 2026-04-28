@@ -488,6 +488,60 @@ footer p {
   font-weight: 600;
 }
 
+/* Quantity Selector Modal */
+.quantity-selector {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+
+.quantity-selector button {
+  width: 40px;
+  height: 40px;
+  border: 2px solid var(--primary);
+  background: transparent;
+  color: var(--primary);
+  font-size: 1.5rem;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.quantity-selector button:hover {
+  background: var(--primary);
+  color: var(--white);
+}
+
+.quantity-selector input {
+  width: 60px;
+  padding: 0.5rem;
+  text-align: center;
+  font-size: 1.2rem;
+  border: 2px solid var(--primary);
+  border-radius: 8px;
+}
+
+.modal-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+/* Cart Item Details */
+.cart-item-details {
+  display: flex;
+  gap: 1rem;
+  margin-top: 0.25rem;
+}
+
+.cart-item-quantidade {
+  color: #666;
+  font-size: 0.9rem;
+}
+
 /* Header Actions */
 .header-actions {
   display: flex;

@@ -1,6 +1,9 @@
-// Cart state
+// Cart state - agora armazena objetos com quantity
 let cart = [];
 let appliedCoupon = null;
+
+// Variáveis para o modal de quantidade
+let currentProduct = { name: "", price: 0 };
 
 // Coupon codes (in a real app, this would come from a backend)
 const coupons = {
@@ -36,6 +39,15 @@ document.getElementById("modal").addEventListener("click", function (e) {
   }
 });
 
+// Close quantity modal when clicking outside
+document
+  .getElementById("quantity-modal")
+  .addEventListener("click", function (e) {
+    if (e.target === this) {
+      closeQuantityModal();
+    }
+  });
+
 // Cart Functions
 function openCart() {
   document.getElementById("cart-modal").classList.add("active");
@@ -46,25 +58,83 @@ function closeCart() {
   document.getElementById("cart-modal").classList.remove("active");
 }
 
-function addToCart(name, price) {
-  const quantityInput = document.getElementById(`qty-${name}`);
-  const quantity = quantityInput ? parseInt(quantityInput.value) || 1 : 1;
+// Funções do Modal de Quantidade
+function openQuantityModal(name, price) {
+  currentProduct = { name, price };
+  document.getElementById("quantity-product-name").textContent = name;
+  document.getElementById("quantity-product-price").textContent =
+    formatPrice(price);
+  document.getElementById("selected-quantity").value = 1;
+  updateQuantityTotal();
+  document.getElementById("quantity-modal").classList.add("active");
+}
 
-  // Add the product with quantity
-  for (let i = 0; i < quantity; i++) {
-    cart.push({ name, price });
+function closeQuantityModal() {
+  document.getElementById("quantity-modal").classList.remove("active");
+}
+
+function changeQuantity(delta) {
+  const input = document.getElementById("selected-quantity");
+  let value = parseInt(input.value) || 1;
+  value = Math.max(1, value + delta);
+  input.value = value;
+  updateQuantityTotal();
+}
+
+function updateQuantityTotal() {
+  const quantity =
+    parseInt(document.getElementById("selected-quantity").value) || 1;
+  const total = currentProduct.price * quantity;
+  document.getElementById("quantity-total").textContent = formatPrice(total);
+}
+
+function confirmAddToCart() {
+  const quantity =
+    parseInt(document.getElementById("selected-quantity").value) || 1;
+
+  // Verificar se o produto já existe no carrinho
+  const existingItem = cart.find((item) => item.name === currentProduct.name);
+
+  if (existingItem) {
+    // Atualizar quantidade
+    existingItem.quantity += quantity;
+    existingItem.totalPrice = existingItem.price * existingItem.quantity;
+  } else {
+    // Adicionar novo item com quantidade
+    cart.push({
+      name: currentProduct.name,
+      price: currentProduct.price,
+      quantity: quantity,
+      totalPrice: currentProduct.price * quantity,
+    });
   }
 
+  closeQuantityModal();
   updateCartCount();
   renderCart();
 
   // Show confirmation
-  document.getElementById("product-name").textContent = name;
+  document.getElementById("product-name").textContent = currentProduct.name;
   document.getElementById("modal").classList.add("active");
 
   setTimeout(() => {
     closeModal();
   }, 1500);
+}
+
+function addToCart(name, price) {
+  // Função legacy mantida para compatibilidade
+  const existingItem = cart.find((item) => item.name === name);
+
+  if (existingItem) {
+    existingItem.quantity += 1;
+    existingItem.totalPrice = existingItem.price * existingItem.quantity;
+  } else {
+    cart.push({ name, price, quantity: 1, totalPrice: price });
+  }
+
+  updateCartCount();
+  renderCart();
 }
 
 function removeFromCart(index) {
@@ -74,7 +144,9 @@ function removeFromCart(index) {
 }
 
 function updateCartCount() {
-  document.querySelector(".cart-count").textContent = cart.length;
+  // Mostrar total de itens no carrinho
+  const totalItems = cart.reduce((sum, item) => sum + (item.quantity || 1), 0);
+  document.querySelector(".cart-count").textContent = totalItems;
 }
 
 function renderCart() {
@@ -90,7 +162,10 @@ function renderCart() {
         <div class="cart-item">
           <div class="cart-item-info">
             <div class="cart-item-name">${item.name}</div>
-            <div class="cart-item-price">${formatPrice(item.price)}</div>
+            <div class="cart-item-details">
+              <span class="cart-item-quantidade">Qtd: ${item.quantity}</span>
+              <span class="cart-item-price">${formatPrice(item.totalPrice || item.price * item.quantity)}</span>
+            </div>
           </div>
           <button class="cart-item-remove" onclick="removeFromCart(${index})">🗑️</button>
         </div>
@@ -104,7 +179,11 @@ function renderCart() {
 }
 
 function updateCartSummary() {
-  const subtotal = cart.reduce((sum, item) => sum + item.price, 0);
+  // Calcular subtotal considerando quantidade
+  const subtotal = cart.reduce((sum, item) => {
+    const qty = item.quantity || 1;
+    return sum + item.price * qty;
+  }, 0);
   let discount = 0;
   let total = subtotal;
 

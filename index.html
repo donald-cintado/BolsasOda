@@ -71,19 +71,9 @@
               a dia.
             </p>
             <div class="product-price">R$ 289,00</div>
-            <div class="product-quantity">
-              <label>Quantidade:</label>
-              <input
-                type="number"
-                id="qty-Bolsa Clássica Terracota"
-                min="1"
-                value="1"
-                title="Quantidade"
-              />
-            </div>
             <button
               class="product-button"
-              onclick="addToCart('Bolsa Clássica Terracota', 289)"
+              onclick="openQuantityModal('Bolsa Clássica Terracota', 289)"
             >
               Comprar Agora
             </button>
@@ -104,19 +94,9 @@
               Design tradicional com detalhes em couro. Elegância atemporal.
             </p>
             <div class="product-price">R$ 349,00</div>
-            <div class="product-quantity">
-              <label>Quantidade:</label>
-              <input
-                type="number"
-                id="qty-Bolsa Vintage Marrom"
-                min="1"
-                value="1"
-                title="Quantidade"
-              />
-            </div>
             <button
               class="product-button"
-              onclick="addToCart('Bolsa Vintage Marrom', 349)"
+              onclick="openQuantityModal('Bolsa Vintage Marrom', 349)"
             >
               Comprar Agora
             </button>
@@ -137,19 +117,9 @@
               Tecido com fibras naturais. Ideal para o verão e ocasiões casuais.
             </p>
             <div class="product-price">R$ 259,00</div>
-            <div class="product-quantity">
-              <label>Quantidade:</label>
-              <input
-                type="number"
-                id="qty-Bolsa Boho Natural"
-                min="1"
-                value="1"
-                title="Quantidade"
-              />
-            </div>
             <button
               class="product-button"
-              onclick="addToCart('Bolsa Boho Natural', 259)"
+              onclick="openQuantityModal('Bolsa Boho Natural', 259)"
             >
               Comprar Agora
             </button>
@@ -170,19 +140,9 @@
               Combinação de tecido artesanal com couro legítimo. Luxo artesanal.
             </p>
             <div class="product-price">R$ 459,00</div>
-            <div class="product-quantity">
-              <label>Quantidade:</label>
-              <input
-                type="number"
-                id="qty-Bolsa Premium Couro"
-                min="1"
-                value="1"
-                title="Quantidade"
-              />
-            </div>
             <button
               class="product-button"
-              onclick="addToCart('Bolsa Premium Couro', 459)"
+              onclick="openQuantityModal('Bolsa Premium Couro', 459)"
             >
               Comprar Agora
             </button>
@@ -203,19 +163,9 @@
               Cores vibrantes tecidas à mão. Uma peça que chama a atenção.
             </p>
             <div class="product-price">R$ 319,00</div>
-            <div class="product-quantity">
-              <label>Quantidade:</label>
-              <input
-                type="number"
-                id="qty-Bolsa Cores do Arco-Íris"
-                min="1"
-                value="1"
-                title="Quantidade"
-              />
-            </div>
             <button
               class="product-button"
-              onclick="addToCart('Bolsa Cores do Arco-Íris', 319)"
+              onclick="openQuantityModal('Bolsa Cores do Arco-Íris', 319)"
             >
               Comprar Agora
             </button>
@@ -236,19 +186,9 @@
               Espaçosa e resistente. Perfeita para o trabalho ou a universidade.
             </p>
             <div class="product-price">R$ 379,00</div>
-            <div class="product-quantity">
-              <label>Quantidade:</label>
-              <input
-                type="number"
-                id="qty-Bolsa Tote Artesanal"
-                min="1"
-                value="1"
-                title="Quantidade"
-              />
-            </div>
             <button
               class="product-button"
-              onclick="addToCart('Bolsa Tote Artesanal', 379)"
+              onclick="openQuantityModal('Bolsa Tote Artesanal', 379)"
             >
               Comprar Agora
             </button>
@@ -346,7 +286,36 @@
       <p>© 2026 Bolsas Artesanais - Tecidas à Mão com ❤️</p>
     </footer>
 
-    <!-- Modal -->
+    <!-- Modal de Quantidade -->
+    <div class="modal" id="quantity-modal">
+      <div class="modal-content">
+        <h3>Escolha a Quantidade</h3>
+        <p>Produto: <span id="quantity-product-name"></span></p>
+        <p>Preço unitário: <span id="quantity-product-price"></span></p>
+        <div class="quantity-selector">
+          <button onclick="changeQuantity(-1)">-</button>
+          <input
+            type="number"
+            id="selected-quantity"
+            value="1"
+            min="1"
+            title="Quantidade"
+          />
+          <button onclick="changeQuantity(1)">+</button>
+        </div>
+        <p>Total: <span id="quantity-total"></span></p>
+        <div class="modal-buttons">
+          <button class="modal-close" onclick="closeQuantityModal()">
+            Cancelar
+          </button>
+          <button class="cta-button" onclick="confirmAddToCart()">
+            Adicionar ao Carrinho
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal de Confirmação -->
     <div class="modal" id="modal">
       <div class="modal-content">
         <h3>Obrigado pelo seu interesse!</h3>
