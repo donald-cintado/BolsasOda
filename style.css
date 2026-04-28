@@ -251,6 +251,34 @@ nav {
   color: var(--white);
 }
 
+/* Product Quantity Selector */
+.product-quantity {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.product-quantity label {
+  font-size: 0.9rem;
+  color: var(--dark);
+}
+
+.product-quantity input {
+  width: 60px;
+  padding: 0.5rem;
+  border: 1px solid var(--primary);
+  border-radius: 5px;
+  font-size: 1rem;
+  text-align: center;
+}
+
+.product-quantity input:focus {
+  outline: none;
+  border-color: var(--secondary);
+  box-shadow: 0 0 0 2px rgba(210, 105, 30, 0.2);
+}
+
 /* About Section */
 .about {
   background: var(--accent);

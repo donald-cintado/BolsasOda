@@ -47,7 +47,14 @@ function closeCart() {
 }
 
 function addToCart(name, price) {
-  cart.push({ name, price });
+  const quantityInput = document.getElementById(`qty-${name}`);
+  const quantity = quantityInput ? parseInt(quantityInput.value) || 1 : 1;
+
+  // Add the product with quantity
+  for (let i = 0; i < quantity; i++) {
+    cart.push({ name, price });
+  }
+
   updateCartCount();
   renderCart();
 
