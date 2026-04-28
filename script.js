@@ -60,13 +60,19 @@ function closeCart() {
 
 // Funções do Modal de Quantidade
 function openQuantityModal(name, price) {
+  console.log("openQuantityModal called with:", name, price);
   currentProduct = { name, price };
   document.getElementById("quantity-product-name").textContent = name;
   document.getElementById("quantity-product-price").textContent =
-    formatPrice(price);
+    "R$ " + parseFloat(price).toFixed(2).replace(".", ",");
   document.getElementById("selected-quantity").value = 1;
   updateQuantityTotal();
-  document.getElementById("quantity-modal").classList.add("active");
+  const modal = document.getElementById("quantity-modal");
+  console.log("Modal element:", modal);
+  if (modal) {
+    modal.classList.add("active");
+    console.log("Modal classes after add:", modal.classList);
+  }
 }
 
 function closeQuantityModal() {
