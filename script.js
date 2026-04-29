@@ -1,6 +1,7 @@
 // Cart state - agora armazena objetos com quantity
 let cart = [];
 let appliedCoupon = null;
+let currentProduct = { name: "", price: 0 };
 
 // Coupon codes (in a real app, this would come from a backend)
 const coupons = {
@@ -53,36 +54,39 @@ function closeCart() {
 
 // Funções do Modal de Quantidade
 function openQuantityModal(name, price) {
-  // Simples: pergunta a quantidade com prompt
-  const quantity = prompt(
-    `Quantas "${name}" você deseja comprar?\n\nPreço unitário: R$ ${price.toFixed(2).replace(".", ",")}`,
-    "1"
-  );
-
-  if (quantity !== null && quantity !== "") {
-    const qty = parseInt(quantity);
-    if (qty > 0) {
-      addToCart(name, price, qty);
-    } else {
-      alert("Por favor, digite uma quantidade válida!");
-    }
-  }
+  currentProduct = { name, price };
+  document.getElementById("quantity-product-name").textContent = name;
+  document.getElementById("quantity-product-price").textContent =
+    formatPrice(price);
+  document.getElementById("quantity-input").value = 1;
+  document.getElementById("quantity-total").textContent = formatPrice(price);
+  document.getElementById("quantity-modal").classList.add("active");
 }
 
 function closeQuantityModal() {
-  // Não precisa mais, usando prompt
+  document.getElementById("quantity-modal").classList.remove("active");
 }
 
 function changeQuantity(delta) {
-  // Não precisa mais, usando prompt
+  const input = document.getElementById("quantity-input");
+  let value = parseInt(input.value, 10) || 1;
+  value = Math.max(1, value + delta);
+  input.value = value;
+  updateQuantityTotal();
 }
 
 function updateQuantityTotal() {
-  // Não precisa mais, usando prompt
+  const quantity =
+    parseInt(document.getElementById("quantity-input").value, 10) || 1;
+  const total = currentProduct.price * quantity;
+  document.getElementById("quantity-total").textContent = formatPrice(total);
 }
 
 function confirmAddToCart() {
-  // Não precisa mais, usando prompt
+  const quantity =
+    parseInt(document.getElementById("quantity-input").value, 10) || 1;
+  addToCart(currentProduct.name, currentProduct.price, quantity);
+  closeQuantityModal();
 }
 
 function addToCart(name, price, quantity = 1) {
