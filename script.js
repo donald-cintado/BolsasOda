@@ -13,6 +13,11 @@ const coupons = {
   fretegratis: { discount: 0, type: "shipping" },
 };
 
+// Função para formatar preço
+function formatPrice(price) {
+  return "R$ " + parseFloat(price).toFixed(2).replace(".", ",");
+}
+
 function scrollToSection(id) {
   document.getElementById(id).scrollIntoView({ behavior: "smooth" });
 }
@@ -60,19 +65,13 @@ function closeCart() {
 
 // Funções do Modal de Quantidade
 function openQuantityModal(name, price) {
-  console.log("openQuantityModal called with:", name, price);
   currentProduct = { name, price };
   document.getElementById("quantity-product-name").textContent = name;
   document.getElementById("quantity-product-price").textContent =
-    "R$ " + parseFloat(price).toFixed(2).replace(".", ",");
+    formatPrice(price);
   document.getElementById("selected-quantity").value = 1;
   updateQuantityTotal();
-  const modal = document.getElementById("quantity-modal");
-  console.log("Modal element:", modal);
-  if (modal) {
-    modal.classList.add("active");
-    console.log("Modal classes after add:", modal.classList);
-  }
+  document.getElementById("quantity-modal").classList.add("active");
 }
 
 function closeQuantityModal() {
@@ -288,7 +287,3 @@ document.addEventListener("DOMContentLoaded", function () {
     };
   });
 });
-
-function formatPrice(price) {
-  return "R$ " + price.toFixed(2).replace(".", ",");
-}
