@@ -286,35 +286,6 @@
       <p>© 2026 Bolsas Artesanais - Tecidas à Mão com ❤️</p>
     </footer>
 
-    <!-- Modal de Quantidade -->
-    <div class="modal" id="quantity-modal">
-      <div class="modal-content">
-        <h3>Escolha a Quantidade</h3>
-        <p>Produto: <span id="quantity-product-name"></span></p>
-        <p>Preço unitário: <span id="quantity-product-price"></span></p>
-        <div class="quantity-selector">
-          <button onclick="changeQuantity(-1)">-</button>
-          <input
-            type="number"
-            id="selected-quantity"
-            value="1"
-            min="1"
-            title="Quantidade"
-          />
-          <button onclick="changeQuantity(1)">+</button>
-        </div>
-        <p>Total: <span id="quantity-total"></span></p>
-        <div class="modal-buttons">
-          <button class="modal-close" onclick="closeQuantityModal()">
-            Cancelar
-          </button>
-          <button class="cta-button" onclick="confirmAddToCart()">
-            Adicionar ao Carrinho
-          </button>
-        </div>
-      </div>
-    </div>
-
     <!-- Modal de Confirmação -->
     <div class="modal" id="modal">
       <div class="modal-content">
@@ -348,11 +319,7 @@
             <span>Subtotal:</span>
             <span id="cart-subtotal">R$ 0,00</span>
           </div>
-          <div
-            class="cart-row discount-row"
-            id="discount-row"
-            style="display: none"
-          >
+          <div class="cart-row discount-row" id="discount-row">
             <span>Desconto:</span>
             <span id="cart-discount">-R$ 0,00</span>
           </div>

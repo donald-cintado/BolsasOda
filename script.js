@@ -2,9 +2,6 @@
 let cart = [];
 let appliedCoupon = null;
 
-// Variáveis para o modal de quantidade
-let currentProduct = { name: "", price: 0 };
-
 // Coupon codes (in a real app, this would come from a backend)
 const coupons = {
   BOLSA10: { discount: 10, type: "percent" },
@@ -44,15 +41,6 @@ document.getElementById("modal").addEventListener("click", function (e) {
   }
 });
 
-// Close quantity modal when clicking outside
-document
-  .getElementById("quantity-modal")
-  .addEventListener("click", function (e) {
-    if (e.target === this) {
-      closeQuantityModal();
-    }
-  });
-
 // Cart Functions
 function openCart() {
   document.getElementById("cart-modal").classList.add("active");
@@ -65,81 +53,64 @@ function closeCart() {
 
 // Funções do Modal de Quantidade
 function openQuantityModal(name, price) {
-  currentProduct = { name, price };
-  document.getElementById("quantity-product-name").textContent = name;
-  document.getElementById("quantity-product-price").textContent =
-    formatPrice(price);
-  document.getElementById("selected-quantity").value = 1;
-  updateQuantityTotal();
-  document.getElementById("quantity-modal").classList.add("active");
+  // Simples: pergunta a quantidade com prompt
+  const quantity = prompt(
+    `Quantas "${name}" você deseja comprar?\n\nPreço unitário: R$ ${price.toFixed(2).replace(".", ",")}`,
+    "1"
+  );
+
+  if (quantity !== null && quantity !== "") {
+    const qty = parseInt(quantity);
+    if (qty > 0) {
+      addToCart(name, price, qty);
+    } else {
+      alert("Por favor, digite uma quantidade válida!");
+    }
+  }
 }
 
 function closeQuantityModal() {
-  document.getElementById("quantity-modal").classList.remove("active");
+  // Não precisa mais, usando prompt
 }
 
 function changeQuantity(delta) {
-  const input = document.getElementById("selected-quantity");
-  let value = parseInt(input.value) || 1;
-  value = Math.max(1, value + delta);
-  input.value = value;
-  updateQuantityTotal();
+  // Não precisa mais, usando prompt
 }
 
 function updateQuantityTotal() {
-  const quantity =
-    parseInt(document.getElementById("selected-quantity").value) || 1;
-  const total = currentProduct.price * quantity;
-  document.getElementById("quantity-total").textContent = formatPrice(total);
+  // Não precisa mais, usando prompt
 }
 
 function confirmAddToCart() {
-  const quantity =
-    parseInt(document.getElementById("selected-quantity").value) || 1;
+  // Não precisa mais, usando prompt
+}
 
-  // Verificar se o produto já existe no carrinho
-  const existingItem = cart.find((item) => item.name === currentProduct.name);
+function addToCart(name, price, quantity = 1) {
+  // Adicionar ou atualizar item no carrinho
+  const existingItem = cart.find((item) => item.name === name);
 
   if (existingItem) {
-    // Atualizar quantidade
     existingItem.quantity += quantity;
     existingItem.totalPrice = existingItem.price * existingItem.quantity;
   } else {
-    // Adicionar novo item com quantidade
     cart.push({
-      name: currentProduct.name,
-      price: currentProduct.price,
+      name,
+      price,
       quantity: quantity,
-      totalPrice: currentProduct.price * quantity,
+      totalPrice: price * quantity,
     });
   }
 
-  closeQuantityModal();
   updateCartCount();
   renderCart();
 
   // Show confirmation
-  document.getElementById("product-name").textContent = currentProduct.name;
+  document.getElementById("product-name").textContent = name;
   document.getElementById("modal").classList.add("active");
 
   setTimeout(() => {
     closeModal();
   }, 1500);
-}
-
-function addToCart(name, price) {
-  // Função legacy mantida para compatibilidade
-  const existingItem = cart.find((item) => item.name === name);
-
-  if (existingItem) {
-    existingItem.quantity += 1;
-    existingItem.totalPrice = existingItem.price * existingItem.quantity;
-  } else {
-    cart.push({ name, price, quantity: 1, totalPrice: price });
-  }
-
-  updateCartCount();
-  renderCart();
 }
 
 function removeFromCart(index) {
