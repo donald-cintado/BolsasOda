@@ -1445,7 +1445,7 @@ section {
 
 /* Coupon Area */
 .cart-drawer-coupon {
-  padding: 1.5rem 2rem 0.75rem;
+  padding: 1.5rem 2rem 0.5rem;
   border-top: 1px solid rgba(141, 91, 76, 0.08);
   background-color: var(--alabaster);
 }
@@ -1457,37 +1457,41 @@ section {
 
 .coupon-input-wrapper input {
   flex-grow: 1;
-  padding: 0.7rem 1rem;
-  border: 1px solid var(--linen-dark);
-  border-radius: var(--radius-sm);
+  padding: 0.8rem 1.5rem;
+  border: 1.5px solid var(--linen-dark);
+  background-color: var(--white);
+  border-radius: var(--radius-round);
   font-size: 0.85rem;
   outline: none;
+  transition: var(--transition-fast);
 }
 
 .coupon-input-wrapper input:focus {
   border-color: var(--clay);
+  box-shadow: 0 0 0 3px rgba(141, 91, 76, 0.1);
 }
 
 .coupon-apply-btn {
-  background-color: var(--charcoal);
+  background-color: var(--clay);
   color: var(--white);
   border: none;
-  padding: 0.7rem 1.25rem;
-  border-radius: var(--radius-sm);
+  padding: 0.8rem 1.75rem;
+  border-radius: var(--radius-round);
   font-weight: 700;
   font-size: 0.85rem;
   cursor: pointer;
-  transition: var(--transition-fast);
+  transition: var(--transition-smooth);
 }
 
 .coupon-apply-btn:hover {
-  background-color: var(--clay);
+  background-color: var(--charcoal);
 }
 
 .coupon-feedback-msg {
   font-size: 0.8rem;
   margin-top: 0.5rem;
   font-weight: 600;
+  padding-left: 1rem;
 }
 
 .coupon-feedback-msg.success { color: var(--sage-green); }
@@ -1495,8 +1499,9 @@ section {
 
 /* Shipping Area */
 .cart-drawer-shipping {
-  padding: 0.75rem 2rem 1.5rem;
+  padding: 0.5rem 2rem 1.5rem;
   background-color: var(--alabaster);
+  border-bottom: 1px solid rgba(141, 91, 76, 0.06);
 }
 
 .shipping-input-wrapper {
@@ -1506,31 +1511,34 @@ section {
 
 .shipping-input-wrapper input {
   flex-grow: 1;
-  padding: 0.7rem 1rem;
+  padding: 0.8rem 1.5rem;
   border: 1px solid var(--linen-dark);
-  border-radius: var(--radius-sm);
+  background-color: var(--white);
+  border-radius: var(--radius-round);
   font-size: 0.85rem;
   outline: none;
+  transition: var(--transition-fast);
 }
 
 .shipping-input-wrapper input:focus {
   border-color: var(--clay);
+  box-shadow: 0 0 0 3px rgba(141, 91, 76, 0.1);
 }
 
 .shipping-apply-btn {
-  background-color: var(--charcoal);
+  background-color: var(--clay);
   color: var(--white);
   border: none;
-  padding: 0.7rem 1.25rem;
-  border-radius: var(--radius-sm);
+  padding: 0.8rem 1.75rem;
+  border-radius: var(--radius-round);
   font-weight: 700;
   font-size: 0.85rem;
   cursor: pointer;
-  transition: var(--transition-fast);
+  transition: var(--transition-smooth);
 }
 
 .shipping-apply-btn:hover {
-  background-color: var(--clay);
+  background-color: var(--charcoal);
 }
 
 .shipping-feedback-msg {
@@ -1538,6 +1546,7 @@ section {
   margin-top: 0.5rem;
   font-weight: 600;
   line-height: 1.4;
+  padding-left: 1rem;
 }
 
 .shipping-feedback-msg.success { color: var(--sage-green); }
