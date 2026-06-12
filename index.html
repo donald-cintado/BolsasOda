@@ -477,6 +477,15 @@
           <p class="coupon-feedback-msg" id="coupon-feedback"></p>
         </div>
 
+        <!-- Seção de Cálculo de Frete -->
+        <div class="cart-drawer-shipping">
+          <div class="shipping-input-wrapper">
+            <input type="text" id="cep-input" placeholder="Calcular Frete (CEP: 00000-000)" maxlength="9" oninput="maskCEP(this)" aria-label="Digite seu CEP para calcular o frete" />
+            <button class="shipping-apply-btn" onclick="calculateShipping()">Calcular</button>
+          </div>
+          <p class="shipping-feedback-msg" id="shipping-feedback"></p>
+        </div>
+
         <div class="cart-drawer-summary">
           <div class="summary-row">
             <span>Subtotal:</span>
@@ -485,6 +494,10 @@
           <div class="summary-row discount-row" id="summary-discount-row">
             <span>Desconto:</span>
             <span id="summary-discount">-R$ 0,00</span>
+          </div>
+          <div class="summary-row shipping-row" id="summary-shipping-row" style="display: none;">
+            <span>Frete:</span>
+            <span id="summary-shipping">R$ 0,00</span>
           </div>
           <div class="summary-row total-row">
             <span>Total:</span>

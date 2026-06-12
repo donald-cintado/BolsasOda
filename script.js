@@ -3,6 +3,8 @@
 // ==========================================================================
 let cart = [];
 let appliedCoupon = null;
+let shippingCost = 0;
+let shippingAddress = null;
 
 // Valid Coupons
 const coupons = {
@@ -173,6 +175,7 @@ function openCart() {
   renderCart();
 }
 
+// Close Cart and enable body scrolling
 function closeCart() {
   document.getElementById("cart-drawer-container").classList.remove("active");
   document.body.style.overflow = ""; // Enable background scroll
@@ -237,6 +240,17 @@ function renderCart() {
   if (cart.length === 0) {
     cartWrapper.innerHTML = `<p class="cart-empty-msg">Seu carrinho está vazio 👜</p>`;
     if (checkoutBtn) checkoutBtn.disabled = true;
+    
+    // Reset Shipping when cart is emptied
+    shippingCost = 0;
+    shippingAddress = null;
+    const cepInput = document.getElementById("cep-input");
+    if (cepInput) cepInput.value = "";
+    const feedback = document.getElementById("shipping-feedback");
+    if (feedback) {
+      feedback.textContent = "";
+      feedback.className = "shipping-feedback-msg";
+    }
   } else {
     cartWrapper.innerHTML = cart
       .map((item, index) => `
@@ -265,23 +279,43 @@ function renderCart() {
 function updateCartSummary() {
   const subtotal = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
   let discount = 0;
-  let total = subtotal;
 
   if (appliedCoupon) {
     if (appliedCoupon.type === "percent") {
       discount = (subtotal * appliedCoupon.discount) / 100;
-      total = subtotal - discount;
     }
   }
 
+  // Recalculate shipping dynamically if an address is defined (e.g. if items or subtotal changes)
+  if (shippingAddress) {
+    shippingCost = getShippingRateByUF(shippingAddress.uf, subtotal);
+    
+    // Refresh visual feedback message in case it changed to Free
+    const rateText = shippingCost === 0 ? "Grátis" : formatPrice(shippingCost);
+    showShippingFeedback(`Entrega para: ${shippingAddress.city} - ${shippingAddress.uf} (${shippingAddress.neighborhood}) | Frete: ${rateText}`, "success");
+  }
+
+  let total = subtotal - discount + shippingCost;
+
   document.getElementById("summary-subtotal").textContent = formatPrice(subtotal);
 
+  // Discount display
   const discountRow = document.getElementById("summary-discount-row");
   if (discount > 0) {
     discountRow.style.display = "flex";
     document.getElementById("summary-discount").textContent = "-" + formatPrice(discount);
   } else {
     discountRow.style.display = "none";
+  }
+
+  // Shipping display
+  const shippingRow = document.getElementById("summary-shipping-row");
+  const shippingValEl = document.getElementById("summary-shipping");
+  if (shippingAddress) {
+    shippingRow.style.display = "flex";
+    shippingValEl.textContent = shippingCost === 0 ? "Grátis" : formatPrice(shippingCost);
+  } else {
+    shippingRow.style.display = "none";
   }
 
   document.getElementById("summary-total").textContent = formatPrice(total);
@@ -314,6 +348,111 @@ function applyCoupon() {
 }
 
 // ==========================================================================
+// SHIPPING CALCULATOR (ViaCEP API)
+// ==========================================================================
+function maskCEP(input) {
+  let value = input.value.replace(/\D/g, "");
+  if (value.length > 5) {
+    value = value.substring(0, 5) + "-" + value.substring(5, 8);
+  }
+  input.value = value;
+}
+
+function showShippingFeedback(text, className) {
+  const el = document.getElementById("shipping-feedback");
+  if (el) {
+    el.textContent = text;
+    el.className = `shipping-feedback-msg ${className}`;
+  }
+}
+
+function calculateShipping() {
+  const cepInput = document.getElementById("cep-input");
+  const cep = cepInput.value.replace(/\D/g, "");
+
+  if (cart.length === 0) {
+    showShippingFeedback("Adicione produtos ao carrinho primeiro.", "error");
+    return;
+  }
+
+  if (cep.length !== 8) {
+    showShippingFeedback("Por favor, digite um CEP válido (8 dígitos).", "error");
+    return;
+  }
+
+  showShippingFeedback("Consultando endereço de entrega...", "loading");
+
+  fetch(`https://viacep.com.br/ws/${cep}/json/`)
+    .then((res) => res.json())
+    .then((data) => {
+      if (data.erro) {
+        showShippingFeedback("CEP não localizado. Verifique os números.", "error");
+        shippingCost = 0;
+        shippingAddress = null;
+        updateCartSummary();
+        return;
+      }
+
+      const uf = data.uf;
+      const city = data.localidade;
+      const neighborhood = data.bairro || "Centro";
+      
+      shippingAddress = {
+        city: city,
+        uf: uf,
+        neighborhood: neighborhood,
+        cep: cepInput.value
+      };
+
+      const subtotal = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+      shippingCost = getShippingRateByUF(uf, subtotal);
+
+      const rateText = shippingCost === 0 ? "Grátis" : formatPrice(shippingCost);
+      showShippingFeedback(`Entrega para: ${city} - ${uf} (${neighborhood}) | Frete: ${rateText}`, "success");
+      
+      updateCartSummary();
+    })
+    .catch((err) => {
+      console.error(err);
+      showShippingFeedback("Erro na consulta. Tente novamente mais tarde.", "error");
+      shippingCost = 0;
+      shippingAddress = null;
+      updateCartSummary();
+    });
+}
+
+function getShippingRateByUF(uf, subtotal) {
+  const southeast = ["SP", "RJ", "MG", "ES"];
+  const south = ["PR", "SC", "RS"];
+  const centralWest = ["DF", "GO", "MS", "MT"];
+  const northeast = ["BA", "PE", "CE", "RN", "PB", "AL", "SE", "PI", "MA"];
+  const north = ["AM", "PA", "RO", "AC", "RR", "AP", "TO"];
+
+  // Southeast region
+  if (southeast.includes(uf)) {
+    return subtotal >= 300 ? 0 : 14.90;
+  }
+  // South region
+  if (south.includes(uf)) {
+    return subtotal >= 350 ? 0 : 19.90;
+  }
+  // Central-West region
+  if (centralWest.includes(uf)) {
+    return 24.90;
+  }
+  // Northeast region
+  if (northeast.includes(uf)) {
+    return 29.90;
+  }
+  // North region
+  if (north.includes(uf)) {
+    return 34.90;
+  }
+  // Default rate for fallback
+  return 19.90;
+}
+
+// ==========================================================================
 // CHECKOUT & REDIRECT TO WHATSAPP
 // ==========================================================================
 function checkout() {
@@ -322,12 +461,19 @@ function checkout() {
   const phone = "5511999999999"; // Ateliê phone number
   const subtotal = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
   let discount = 0;
-  let total = subtotal;
 
   if (appliedCoupon && appliedCoupon.type === "percent") {
     discount = (subtotal * appliedCoupon.discount) / 100;
-    total = subtotal - discount;
   }
+
+  // Double check shipping rate
+  if (shippingAddress) {
+    shippingCost = getShippingRateByUF(shippingAddress.uf, subtotal);
+  } else {
+    shippingCost = 0;
+  }
+
+  let total = subtotal - discount + shippingCost;
 
   // Build text message for WhatsApp API
   let message = "Olá! Gostaria de fazer o pedido das seguintes bolsas de crochê:\n\n";
@@ -340,6 +486,10 @@ function checkout() {
   if (discount > 0) {
     message += `\n*Desconto:* -${formatPrice(discount)}`;
   }
+  if (shippingAddress) {
+    const rateText = shippingCost === 0 ? "Grátis" : formatPrice(shippingCost);
+    message += `\n*Frete:* ${rateText} (${shippingAddress.city} - ${shippingAddress.uf}, CEP: ${shippingAddress.cep})`;
+  }
   message += `\n*Total Geral:* ${formatPrice(total)}`;
   message += "\n\nFico no aguardo para combinarmos a entrega e o pagamento! ✨";
 
@@ -349,13 +499,28 @@ function checkout() {
 
   // Open confirmation details in modal
   const detailsWrapper = document.getElementById("confirmation-details");
-  detailsWrapper.innerHTML = `
+  
+  let detailsHtml = `
     <p><strong>Resumo do Pedido:</strong></p>
     <ul style="list-style: none; padding-left: 0; margin-top: 0.5rem; font-size: 0.85rem; display: flex; flex-direction: column; gap: 0.25rem;">
       ${cart.map(i => `<li>- ${i.name} (x${i.quantity})</li>`).join("")}
     </ul>
+  `;
+  
+  if (shippingAddress) {
+    const shippingText = shippingCost === 0 ? "Grátis" : formatPrice(shippingCost);
+    detailsHtml += `
+      <p style="margin-top: 0.5rem; font-size: 0.85rem; border-top: 1px dashed #ddd; padding-top: 0.5rem;">
+        <strong>Entrega:</strong> ${shippingAddress.city} - ${shippingAddress.uf} (Frete: ${shippingText})
+      </p>
+    `;
+  }
+  
+  detailsHtml += `
     <p style="margin-top: 0.75rem; border-top: 1px solid #ddd; padding-top: 0.5rem;"><strong>Total:</strong> <span style="color:#8d5b4c; font-weight:700;">${formatPrice(total)}</span></p>
   `;
+  
+  detailsWrapper.innerHTML = detailsHtml;
 
   // Show our elegant modal
   document.getElementById("confirmation-modal").classList.add("active");
@@ -368,6 +533,18 @@ function checkout() {
   // Clear Cart State
   cart = [];
   appliedCoupon = null;
+  shippingCost = 0;
+  shippingAddress = null;
+  
+  // Clear inputs
+  const cepInput = document.getElementById("cep-input");
+  if (cepInput) cepInput.value = "";
+  const feedback = document.getElementById("shipping-feedback");
+  if (feedback) {
+    feedback.textContent = "";
+    feedback.className = "shipping-feedback-msg";
+  }
+
   updateCartCount();
   closeCart();
 }

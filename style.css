@@ -1445,7 +1445,7 @@ section {
 
 /* Coupon Area */
 .cart-drawer-coupon {
-  padding: 1.5rem 2rem;
+  padding: 1.5rem 2rem 0.75rem;
   border-top: 1px solid rgba(141, 91, 76, 0.08);
   background-color: var(--alabaster);
 }
@@ -1492,6 +1492,62 @@ section {
 
 .coupon-feedback-msg.success { color: var(--sage-green); }
 .coupon-feedback-msg.error { color: var(--error-red); }
+
+/* Shipping Area */
+.cart-drawer-shipping {
+  padding: 0.75rem 2rem 1.5rem;
+  background-color: var(--alabaster);
+}
+
+.shipping-input-wrapper {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.shipping-input-wrapper input {
+  flex-grow: 1;
+  padding: 0.7rem 1rem;
+  border: 1px solid var(--linen-dark);
+  border-radius: var(--radius-sm);
+  font-size: 0.85rem;
+  outline: none;
+}
+
+.shipping-input-wrapper input:focus {
+  border-color: var(--clay);
+}
+
+.shipping-apply-btn {
+  background-color: var(--charcoal);
+  color: var(--white);
+  border: none;
+  padding: 0.7rem 1.25rem;
+  border-radius: var(--radius-sm);
+  font-weight: 700;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: var(--transition-fast);
+}
+
+.shipping-apply-btn:hover {
+  background-color: var(--clay);
+}
+
+.shipping-feedback-msg {
+  font-size: 0.8rem;
+  margin-top: 0.5rem;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.shipping-feedback-msg.success { color: var(--sage-green); }
+.shipping-feedback-msg.error { color: var(--error-red); }
+.shipping-feedback-msg.loading { color: var(--terracotta); }
+
+.summary-row.shipping-row {
+  color: var(--charcoal);
+  font-weight: 600;
+}
 
 /* Summary Calculation Box */
 .cart-drawer-summary {
