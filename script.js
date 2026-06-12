@@ -605,7 +605,7 @@ function getShippingRateByUF(uf, subtotal) {
 function checkout() {
   if (cart.length === 0) return;
 
-  const phone = "5511999999999"; // Ateliê phone number
+  const phone = "5511975519523"; // Ateliê phone number
   const subtotal = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
   let discount = 0;
 
