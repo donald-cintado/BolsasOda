@@ -49,347 +49,353 @@
       </nav>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero" id="inicio">
-      <div class="hero-overlay"></div>
-      <div class="hero-content">
-        <span class="hero-tagline">Coleção Exclusiva 2026</span>
-        <h1>Arte tecida à mão, feita para durar.</h1>
-        <p>
-          Design contemporâneo aliado à tradição milenar do crochê. Cada bolsa é uma peça única, elaborada meticulosamente com fios sustentáveis de altíssima qualidade.
-        </p>
-        <div class="hero-actions-group">
-          <button class="cta-button hero-cta" onclick="scrollToSection('produtos')">
-            Explorar Coleção
-          </button>
-          <a href="#sobre" class="hero-link">Nossa História →</a>
-        </div>
-      </div>
-      <div class="hero-scroll-indicator" onclick="scrollToSection('produtos')">
-        <span class="scroll-mouse">
-          <span class="scroll-wheel"></span>
-        </span>
-        <span class="scroll-text">Role para explorar</span>
-      </div>
-    </section>
-
-    <!-- Catalog/Products Section -->
-    <section class="products" id="produtos">
-      <div class="section-header">
-        <span class="section-tag">Nossos Produtos</span>
-        <h2 class="section-title">Design Singular em Cada Ponto</h2>
-        <p class="section-subtitle">Explore a versatilidade de nossas bolsas feitas sob medida para quem valoriza o design autoral.</p>
-      </div>
-
-      <!-- Category Filter Bar -->
-      <div class="product-filters" id="catalog-filters">
-        <button class="filter-btn active" data-filter="all" id="filter-all">Todas</button>
-        <button class="filter-btn" data-filter="casual" id="filter-casual">Dia a Dia</button>
-        <button class="filter-btn" data-filter="summer" id="filter-summer">Verão/Praia</button>
-        <button class="filter-btn" data-filter="premium" id="filter-premium">Premium</button>
-      </div>
-
-      <!-- Catalog Grid -->
-      <div class="products-grid" id="catalog-grid">
-        <!-- Bolsa 1 -->
-        <div class="product-card" data-category="casual" id="card-terracota">
-          <div class="product-image-wrapper">
-            <span class="product-badge badge-best-seller">Mais Vendida</span>
-            <img src="images/bolsa_terracota.png" alt="Bolsa Clássica Terracota tecida em crochê" class="product-img" loading="lazy" />
-            <div class="product-hover-action">
-              <button class="quick-buy-btn" onclick="addToCart('Bolsa Clássica Terracota', 289)">Adicionar ao Carrinho 👜</button>
-            </div>
-          </div>
-          <div class="product-info">
-            <div class="product-meta">
-              <span class="product-category">Dia a Dia</span>
-              <div class="product-rating">
-                <span class="stars">★★★★★</span>
-                <span class="rating-count">(48)</span>
-              </div>
-            </div>
-            <h3 class="product-name">Bolsa Clássica Terracota</h3>
-            <p class="product-description">
-              Trama firme e estruturada com fios premium de algodão reciclado. Sofisticação diária.
-            </p>
-            <div class="product-footer">
-              <div class="product-price">R$ 289,00</div>
-              <button class="product-action-btn" onclick="addToCart('Bolsa Clássica Terracota', 289)" aria-label="Comprar Bolsa Clássica Terracota">
-                Comprar
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <!-- Bolsa 2 -->
-        <div class="product-card" data-category="casual" id="card-vintage">
-          <div class="product-image-wrapper">
-            <span class="product-badge badge-exclusive">Exclusiva</span>
-            <img src="images/bolsa_vintage_marrom.png" alt="Bolsa Vintage Marrom tecida em crochê com couro" class="product-img" loading="lazy" />
-            <div class="product-hover-action">
-              <button class="quick-buy-btn" onclick="addToCart('Bolsa Vintage Marrom', 349)">Adicionar ao Carrinho 👜</button>
-            </div>
-          </div>
-          <div class="product-info">
-            <div class="product-meta">
-              <span class="product-category">Dia a Dia</span>
-              <div class="product-rating">
-                <span class="stars">★★★★☆</span>
-                <span class="rating-count">(32)</span>
-              </div>
-            </div>
-            <h3 class="product-name">Bolsa Vintage Marrom</h3>
-            <p class="product-description">
-              Design clássico de inspiração retrô com detalhes em couro nobre e fecho em botão de madeira.
-            </p>
-            <div class="product-footer">
-              <div class="product-price">R$ 349,00</div>
-              <button class="product-action-btn" onclick="addToCart('Bolsa Vintage Marrom', 349)" aria-label="Comprar Bolsa Vintage Marrom">
-                Comprar
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <!-- Bolsa 3 -->
-        <div class="product-card" data-category="summer" id="card-boho">
-          <div class="product-image-wrapper">
-            <span class="product-badge badge-summer">Tendência Verão</span>
-            <img src="images/bolsa_boho_natural.png" alt="Bolsa Boho Natural tecida em crochê com franjas" class="product-img" loading="lazy" />
-            <div class="product-hover-action">
-              <button class="quick-buy-btn" onclick="addToCart('Bolsa Boho Natural', 259)">Adicionar ao Carrinho 👜</button>
-            </div>
-          </div>
-          <div class="product-info">
-            <div class="product-meta">
-              <span class="product-category">Verão/Praia</span>
-              <div class="product-rating">
-                <span class="stars">★★★★★</span>
-                <span class="rating-count">(54)</span>
-              </div>
-            </div>
-            <h3 class="product-name">Bolsa Boho Natural</h3>
-            <p class="product-description">
-              Fibras naturais tecidas com leveza, finalizadas com franjas charmosas. Perfeita para dias ensolarados.
-            </p>
-            <div class="product-footer">
-              <div class="product-price">R$ 259,00</div>
-              <button class="product-action-btn" onclick="addToCart('Bolsa Boho Natural', 259)" aria-label="Comprar Bolsa Boho Natural">
-                Comprar
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <!-- Bolsa 4 -->
-        <div class="product-card" data-category="premium" id="card-premium">
-          <div class="product-image-wrapper">
-            <span class="product-badge badge-premium">Edição Limitada</span>
-            <img src="images/bolsa_premium_couro.png" alt="Bolsa Premium com detalhes em couro nobre" class="product-img" loading="lazy" />
-            <div class="product-hover-action">
-              <button class="quick-buy-btn" onclick="addToCart('Bolsa Premium Couro', 459)">Adicionar ao Carrinho 👜</button>
-            </div>
-          </div>
-          <div class="product-info">
-            <div class="product-meta">
-              <span class="product-category">Premium</span>
-              <div class="product-rating">
-                <span class="stars">★★★★★</span>
-                <span class="rating-count">(18)</span>
-              </div>
-            </div>
-            <h3 class="product-name">Bolsa Premium Couro</h3>
-            <p class="product-description">
-              A união sublime entre a trama refinada de crochê e acabamentos em couro legítimo estruturado.
-            </p>
-            <div class="product-footer">
-              <div class="product-price">R$ 459,00</div>
-              <button class="product-action-btn" onclick="addToCart('Bolsa Premium Couro', 459)" aria-label="Comprar Bolsa Premium Couro">
-                Comprar
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <!-- Bolsa 5 -->
-        <div class="product-card" data-category="summer" id="card-arcoiris">
-          <div class="product-image-wrapper">
-            <span class="product-badge badge-colorblock">Edição Especial</span>
-            <img src="images/bolsa_cores_arcoiris.png" alt="Bolsa colorida em tons de arco-íris tecida em crochê" class="product-img" loading="lazy" />
-            <div class="product-hover-action">
-              <button class="quick-buy-btn" onclick="addToCart('Bolsa Cores do Arco-Íris', 319)">Adicionar ao Carrinho 👜</button>
-            </div>
-          </div>
-          <div class="product-info">
-            <div class="product-meta">
-              <span class="product-category">Verão/Praia</span>
-              <div class="product-rating">
-                <span class="stars">★★★★☆</span>
-                <span class="rating-count">(23)</span>
-              </div>
-            </div>
-            <h3 class="product-name">Bolsa Cores do Arco-Íris</h3>
-            <p class="product-description">
-              Padrão listrado alegre e vibrante tecido à mão. Traz energia e destaque para qualquer visual.
-            </p>
-            <div class="product-footer">
-              <div class="product-price">R$ 319,00</div>
-              <button class="product-action-btn" onclick="addToCart('Bolsa Cores do Arco-Íris', 319)" aria-label="Comprar Bolsa Cores do Arco-Íris">
-                Comprar
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <!-- Bolsa 6 -->
-        <div class="product-card" data-category="casual" id="card-tote">
-          <div class="product-image-wrapper">
-            <span class="product-badge badge-classic">Clássico</span>
-            <img src="images/bolsa_tote_artesanal.png" alt="Bolsa tipo Tote cinza escura tecida em crochê" class="product-img" loading="lazy" />
-            <div class="product-hover-action">
-              <button class="quick-buy-btn" onclick="addToCart('Bolsa Tote Artesanal', 379)">Adicionar ao Carrinho 👜</button>
-            </div>
-          </div>
-          <div class="product-info">
-            <div class="product-meta">
-              <span class="product-category">Dia a Dia</span>
-              <div class="product-rating">
-                <span class="stars">★★★★★</span>
-                <span class="rating-count">(41)</span>
-              </div>
-            </div>
-            <h3 class="product-name">Bolsa Tote Artesanal</h3>
-            <p class="product-description">
-              Espaçosa, resistente e minimalista. Ideal para transportar notebook, cadernos e pertences diários.
-            </p>
-            <div class="product-footer">
-              <div class="product-price">R$ 379,00</div>
-              <button class="product-action-btn" onclick="addToCart('Bolsa Tote Artesanal', 379)" aria-label="Comprar Bolsa Tote Artesanal">
-                Comprar
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- About Section (Asymmetric Story) -->
-    <section class="about" id="sobre">
-      <div class="about-container">
-        <div class="about-visuals">
-          <div class="about-img-main-wrapper">
-            <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600" alt="Artesã tecendo bolsa de crochê com amor" class="about-img-main" />
-          </div>
-          <div class="about-img-sub-wrapper">
-            <img src="https://images.unsplash.com/photo-1590874103328-eac38a683ce7?w=400" alt="Detalhe do fio natural de algodão" class="about-img-sub" />
-          </div>
-        </div>
-        <div class="about-text-content">
-          <span class="about-tag">Artesania de Luxo</span>
-          <h2>Cada ponto carrega uma história singular</h2>
+    <!-- Contêiner Geral da Vitrine -->
+    <main id="storefront-view">
+      <!-- Hero Section -->
+      <section class="hero" id="inicio">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+          <span class="hero-tagline">Coleção Exclusiva 2026</span>
+          <h1>Arte tecida à mão, feita para durar.</h1>
           <p>
-            Na **BolsasOda**, acreditamos que a pressa do mundo contemporâneo pode ser equilibrada com a calma e o afeto da criação manual. Nossas peças são tecidas ponto a ponto por artesãs experientes que traduzem dedicação e maestria em moda sustentável.
+            Design contemporâneo aliado à tradição milenar do crochê. Cada bolsa é uma peça única, elaborada meticulosamente com fios sustentáveis de altíssima qualidade.
           </p>
-          <p>
-            Selecionamos rigidamente matérias-primas nobres: cordões de algodão 100% orgânico, fibras naturais brasileiras e detalhes em couro de curtumes certificados de baixo impacto ambiental. Isso garante durabilidade extrema e beleza atemporal.
-          </p>
-          <div class="about-highlights">
-            <div class="highlight-item">
-              <span class="highlight-num">100%</span>
-              <span class="highlight-desc">Feito à Mão</span>
+          <div class="hero-actions-group">
+            <button class="cta-button hero-cta" onclick="scrollToSection('produtos')">
+              Explorar Coleção
+            </button>
+            <a href="#sobre" class="hero-link">Nossa História →</a>
+          </div>
+        </div>
+        <div class="hero-scroll-indicator" onclick="scrollToSection('produtos')">
+          <span class="scroll-mouse">
+            <span class="scroll-wheel"></span>
+          </span>
+          <span class="scroll-text">Role para explorar</span>
+        </div>
+      </section>
+
+      <!-- Catalog/Products Section -->
+      <section class="products" id="produtos">
+        <div class="section-header">
+          <span class="section-tag">Nossos Produtos</span>
+          <h2 class="section-title">Design Singular em Cada Ponto</h2>
+          <p class="section-subtitle">Explore a versatilidade de nossas bolsas feitas sob medida para quem valoriza o design autoral. Clique sobre os produtos para ver mais fotos e especificações.</p>
+        </div>
+
+        <!-- Category Filter Bar -->
+        <div class="product-filters" id="catalog-filters">
+          <button class="filter-btn active" data-filter="all" id="filter-all">Todas</button>
+          <button class="filter-btn" data-filter="casual" id="filter-casual">Dia a Dia</button>
+          <button class="filter-btn" data-filter="summer" id="filter-summer">Verão/Praia</button>
+          <button class="filter-btn" data-filter="premium" id="filter-premium">Premium</button>
+        </div>
+
+        <!-- Catalog Grid -->
+        <div class="products-grid" id="catalog-grid">
+          <!-- Bolsa 1 -->
+          <div class="product-card" data-category="casual" id="card-terracota">
+            <div class="product-image-wrapper" onclick="openProductDetails('Bolsa Clássica Terracota')" style="cursor: pointer;">
+              <span class="product-badge badge-best-seller">Mais Vendida</span>
+              <img src="images/bolsa_terracota.png" alt="Bolsa Clássica Terracota tecida em crochê" class="product-img" loading="lazy" />
+              <div class="product-hover-action">
+                <button class="quick-buy-btn" onclick="event.stopPropagation(); addToCart('Bolsa Clássica Terracota', 289)">Adicionar ao Carrinho 👜</button>
+              </div>
             </div>
-            <div class="highlight-item">
-              <span class="highlight-num">Sustentável</span>
-              <span class="highlight-desc">Material Ecológico</span>
+            <div class="product-info">
+              <div class="product-meta">
+                <span class="product-category">Dia a Dia</span>
+                <div class="product-rating">
+                  <span class="stars">★★★★★</span>
+                  <span class="rating-count">(48)</span>
+                </div>
+              </div>
+              <h3 class="product-name" onclick="openProductDetails('Bolsa Clássica Terracota')" style="cursor: pointer;">Bolsa Clássica Terracota</h3>
+              <p class="product-description">
+                Trama firme e estruturada com fios premium de algodão reciclado. Sofisticação diária.
+              </p>
+              <div class="product-footer">
+                <div class="product-price">R$ 289,00</div>
+                <button class="product-action-btn" onclick="openProductDetails('Bolsa Clássica Terracota')" aria-label="Comprar Bolsa Clássica Terracota">
+                  Ver Detalhes
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bolsa 2 -->
+          <div class="product-card" data-category="casual" id="card-vintage">
+            <div class="product-image-wrapper" onclick="openProductDetails('Bolsa Vintage Marrom')" style="cursor: pointer;">
+              <span class="product-badge badge-exclusive">Exclusiva</span>
+              <img src="images/bolsa_vintage_marrom.png" alt="Bolsa Vintage Marrom tecida em crochê com couro" class="product-img" loading="lazy" />
+              <div class="product-hover-action">
+                <button class="quick-buy-btn" onclick="event.stopPropagation(); addToCart('Bolsa Vintage Marrom', 349)">Adicionar ao Carrinho 👜</button>
+              </div>
+            </div>
+            <div class="product-info">
+              <div class="product-meta">
+                <span class="product-category">Dia a Dia</span>
+                <div class="product-rating">
+                  <span class="stars">★★★★☆</span>
+                  <span class="rating-count">(32)</span>
+                </div>
+              </div>
+              <h3 class="product-name" onclick="openProductDetails('Bolsa Vintage Marrom')" style="cursor: pointer;">Bolsa Vintage Marrom</h3>
+              <p class="product-description">
+                Design clássico de inspiração retrô com detalhes em couro nobre e fecho em botão de madeira.
+              </p>
+              <div class="product-footer">
+                <div class="product-price">R$ 349,00</div>
+                <button class="product-action-btn" onclick="openProductDetails('Bolsa Vintage Marrom')" aria-label="Comprar Bolsa Vintage Marrom">
+                  Ver Detalhes
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bolsa 3 -->
+          <div class="product-card" data-category="summer" id="card-boho">
+            <div class="product-image-wrapper" onclick="openProductDetails('Bolsa Boho Natural')" style="cursor: pointer;">
+              <span class="product-badge badge-summer">Tendência Verão</span>
+              <img src="images/bolsa_boho_natural.png" alt="Bolsa Boho Natural tecida em crochê com franjas" class="product-img" loading="lazy" />
+              <div class="product-hover-action">
+                <button class="quick-buy-btn" onclick="event.stopPropagation(); addToCart('Bolsa Boho Natural', 259)">Adicionar ao Carrinho 👜</button>
+              </div>
+            </div>
+            <div class="product-info">
+              <div class="product-meta">
+                <span class="product-category">Verão/Praia</span>
+                <div class="product-rating">
+                  <span class="stars">★★★★★</span>
+                  <span class="rating-count">(54)</span>
+                </div>
+              </div>
+              <h3 class="product-name" onclick="openProductDetails('Bolsa Boho Natural')" style="cursor: pointer;">Bolsa Boho Natural</h3>
+              <p class="product-description">
+                Fibras naturais tecidas com leveza, finalizadas com franjas charmosas. Perfeita para dias ensolarados.
+              </p>
+              <div class="product-footer">
+                <div class="product-price">R$ 259,00</div>
+                <button class="product-action-btn" onclick="openProductDetails('Bolsa Boho Natural')" aria-label="Comprar Bolsa Boho Natural">
+                  Ver Detalhes
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bolsa 4 -->
+          <div class="product-card" data-category="premium" id="card-premium">
+            <div class="product-image-wrapper" onclick="openProductDetails('Bolsa Premium Couro')" style="cursor: pointer;">
+              <span class="product-badge badge-premium">Edição Limitada</span>
+              <img src="images/bolsa_premium_couro.png" alt="Bolsa Premium com detalhes em couro nobre" class="product-img" loading="lazy" />
+              <div class="product-hover-action">
+                <button class="quick-buy-btn" onclick="event.stopPropagation(); addToCart('Bolsa Premium Couro', 459)">Adicionar ao Carrinho 👜</button>
+              </div>
+            </div>
+            <div class="product-info">
+              <div class="product-meta">
+                <span class="product-category">Premium</span>
+                <div class="product-rating">
+                  <span class="stars">★★★★★</span>
+                  <span class="rating-count">(18)</span>
+                </div>
+              </div>
+              <h3 class="product-name" onclick="openProductDetails('Bolsa Premium Couro')" style="cursor: pointer;">Bolsa Premium Couro</h3>
+              <p class="product-description">
+                A união sublime entre a trama refinada de crochê e acabamentos em couro legítimo estruturado.
+              </p>
+              <div class="product-footer">
+                <div class="product-price">R$ 459,00</div>
+                <button class="product-action-btn" onclick="openProductDetails('Bolsa Premium Couro')" aria-label="Comprar Bolsa Premium Couro">
+                  Ver Detalhes
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bolsa 5 -->
+          <div class="product-card" data-category="summer" id="card-arcoiris">
+            <div class="product-image-wrapper" onclick="openProductDetails('Bolsa Cores do Arco-Íris')" style="cursor: pointer;">
+              <span class="product-badge badge-colorblock">Edição Especial</span>
+              <img src="images/bolsa_cores_arcoiris.png" alt="Bolsa colorida em tons de arco-íris tecida em crochê" class="product-img" loading="lazy" />
+              <div class="product-hover-action">
+                <button class="quick-buy-btn" onclick="event.stopPropagation(); addToCart('Bolsa Cores do Arco-Íris', 319)">Adicionar ao Carrinho 👜</button>
+              </div>
+            </div>
+            <div class="product-info">
+              <div class="product-meta">
+                <span class="product-category">Verão/Praia</span>
+                <div class="product-rating">
+                  <span class="stars">★★★★☆</span>
+                  <span class="rating-count">(23)</span>
+                </div>
+              </div>
+              <h3 class="product-name" onclick="openProductDetails('Bolsa Cores do Arco-Íris')" style="cursor: pointer;">Bolsa Cores do Arco-Íris</h3>
+              <p class="product-description">
+                Padrão listrado alegre e vibrante tecido à mão. Traz energia e destaque para qualquer visual.
+              </p>
+              <div class="product-footer">
+                <div class="product-price">R$ 319,00</div>
+                <button class="product-action-btn" onclick="openProductDetails('Bolsa Cores do Arco-Íris')" aria-label="Comprar Bolsa Cores do Arco-Íris">
+                  Ver Detalhes
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bolsa 6 -->
+          <div class="product-card" data-category="casual" id="card-tote">
+            <div class="product-image-wrapper" onclick="openProductDetails('Bolsa Tote Artesanal')" style="cursor: pointer;">
+              <span class="product-badge badge-classic">Clássico</span>
+              <img src="images/bolsa_tote_artesanal.png" alt="Bolsa tipo Tote cinza escura tecida em crochê" class="product-img" loading="lazy" />
+              <div class="product-hover-action">
+                <button class="quick-buy-btn" onclick="event.stopPropagation(); addToCart('Bolsa Tote Artesanal', 379)">Adicionar ao Carrinho 👜</button>
+              </div>
+            </div>
+            <div class="product-info">
+              <div class="product-meta">
+                <span class="product-category">Dia a Dia</span>
+                <div class="product-rating">
+                  <span class="stars">★★★★★</span>
+                  <span class="rating-count">(41)</span>
+                </div>
+              </div>
+              <h3 class="product-name" onclick="openProductDetails('Bolsa Tote Artesanal')" style="cursor: pointer;">Bolsa Tote Artesanal</h3>
+              <p class="product-description">
+                Espaçosa, resistente e minimalista. Ideal para transportar notebook, cadernos e pertences diários.
+              </p>
+              <div class="product-footer">
+                <div class="product-price">R$ 379,00</div>
+                <button class="product-action-btn" onclick="openProductDetails('Bolsa Tote Artesanal')" aria-label="Comprar Bolsa Tote Artesanal">
+                  Ver Detalhes
+                </button>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- Features Section -->
-    <section class="features" id="diferenciais">
-      <div class="section-header">
-        <span class="section-tag">Nossas Garantias</span>
-        <h2 class="section-title">A Diferença Está nos Detalhes</h2>
-      </div>
-
-      <div class="features-grid">
-        <div class="feature-card" id="feature-handmade">
-          <div class="feature-icon-wrapper">
-            <span class="feature-emoji">🧵</span>
-          </div>
-          <h3>Alquimia Manual</h3>
-          <p>Técnicas manuais autênticas garantem que nenhuma peça seja idêntica a outra. Sua bolsa é verdadeiramente única.</p>
-        </div>
-
-        <div class="feature-card" id="feature-eco">
-          <div class="feature-icon-wrapper">
-            <span class="feature-emoji">🌿</span>
-          </div>
-          <h3>Matéria-Prima Pura</h3>
-          <p>Compromisso com o meio ambiente através do uso de fios biodegradáveis, algodão regenerativo e corantes naturais.</p>
-        </div>
-
-        <div class="feature-card" id="feature-design">
-          <div class="feature-icon-wrapper">
-            <span class="feature-emoji">✨</span>
-          </div>
-          <h3>Design Autoral</h3>
-          <p>Modelagens desenvolvidas internamente, mesclando tendências globais com o calor da identidade brasileira.</p>
-        </div>
-
-        <div class="feature-card" id="feature-heart">
-          <div class="feature-icon-wrapper">
-            <span class="feature-emoji">💝</span>
-          </div>
-          <h3>Cadeia Justa</h3>
-          <p>Remuneração ética de nossas artesãs locais, promovendo emancipação financeira e valorizando a cultura local.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section class="contact" id="contato">
-      <div class="contact-card">
-        <div class="contact-info-block">
-          <h2>Fale Conosco</h2>
-          <p>
-            Dúvidas sobre envios, encomendas sob medida ou quer ajuda para escolher o modelo ideal? Nosso atendimento humanizado está pronto para conversar.
-          </p>
-          <div class="contact-details-list">
-            <div class="contact-detail-item">
-              <span class="detail-icon">📍</span>
-              <span class="detail-text">Ateliê em São Paulo, SP - Envio para todo o Brasil</span>
+      <!-- About Section (Asymmetric Story) -->
+      <section class="about" id="sobre">
+        <div class="about-container">
+          <div class="about-visuals">
+            <div class="about-img-main-wrapper">
+              <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600" alt="Artesã tecendo bolsa de crochê com amor" class="about-img-main" />
             </div>
-            <div class="contact-detail-item">
-              <span class="detail-icon">✉️</span>
-              <span class="detail-text">contato@bolsasoda.com.br</span>
+            <div class="about-img-sub-wrapper">
+              <img src="https://images.unsplash.com/photo-1590874103328-eac38a683ce7?w=400" alt="Detalhe do fio natural de algodão" class="about-img-sub" />
             </div>
-            <div class="contact-detail-item">
-              <span class="detail-icon">💬</span>
-              <span class="detail-text">WhatsApp: (11) 99999-9999</span>
+          </div>
+          <div class="about-text-content">
+            <span class="about-tag">Artesania de Luxo</span>
+            <h2>Cada ponto carrega uma história singular</h2>
+            <p>
+              Na **BolsasOda**, acreditamos que a pressa do mundo contemporâneo pode ser equilibrada com a calma e o afeto da criação manual. Nossas peças são tecidas ponto a ponto por artesãs experientes que traduzem dedicação e maestria em moda sustentável.
+            </p>
+            <p>
+              Selecionamos rigidamente matérias-primas nobres: cordões de algodão 100% orgânico, fibras naturais brasileiras e detalhes em couro de curtumes certificados de baixo impacto ambiental. Isso garante durabilidade extrema e beleza atemporal.
+            </p>
+            <div class="about-highlights">
+              <div class="highlight-item">
+                <span class="highlight-num">100%</span>
+                <span class="highlight-desc">Feito à Mão</span>
+              </div>
+              <div class="highlight-item">
+                <span class="highlight-num">Sustentável</span>
+                <span class="highlight-desc">Material Ecológico</span>
+              </div>
             </div>
           </div>
         </div>
-        
-        <div class="contact-form-block">
-          <h3>Envie uma Mensagem</h3>
-          <form class="contact-form" id="main-contact-form" onsubmit="submitForm(event)">
-            <div class="form-group">
-              <input type="text" id="contact-name" placeholder="Seu nome completo" required />
-            </div>
-            <div class="form-group">
-              <input type="email" id="contact-email" placeholder="Seu e-mail principal" required />
-            </div>
-            <div class="form-group">
-              <textarea id="contact-message" placeholder="Escreva aqui sua dúvida ou solicitação de modelo personalizado..." required></textarea>
-            </div>
-            <button type="submit" class="submit-btn" id="contact-submit-btn">Enviar Mensagem</button>
-          </form>
+      </section>
+
+      <!-- Features Section -->
+      <section class="features" id="diferenciais">
+        <div class="section-header">
+          <span class="section-tag">Nossas Garantias</span>
+          <h2 class="section-title">A Diferença Está nos Detalhes</h2>
         </div>
-      </div>
-    </section>
+
+        <div class="features-grid">
+          <div class="feature-card" id="feature-handmade">
+            <div class="feature-icon-wrapper">
+              <span class="feature-emoji">🧵</span>
+            </div>
+            <h3>Alquimia Manual</h3>
+            <p>Técnicas manuais autênticas garantem que nenhuma peça seja idêntica a outra. Sua bolsa é verdadeiramente única.</p>
+          </div>
+
+          <div class="feature-card" id="feature-eco">
+            <div class="feature-icon-wrapper">
+              <span class="feature-emoji">🌿</span>
+            </div>
+            <h3>Matéria-Prima Pura</h3>
+            <p>Compromisso com o meio ambiente através do uso de fios biodegradáveis, algodão regenerativo e corantes naturais.</p>
+          </div>
+
+          <div class="feature-card" id="feature-design">
+            <div class="feature-icon-wrapper">
+              <span class="feature-emoji">✨</span>
+            </div>
+            <h3>Design Autoral</h3>
+            <p>Modelagens desenvolvidas internamente, mesclando tendências globais com o calor da identidade brasileira.</p>
+          </div>
+
+          <div class="feature-card" id="feature-heart">
+            <div class="feature-icon-wrapper">
+              <span class="feature-emoji">💝</span>
+            </div>
+            <h3>Cadeia Justa</h3>
+            <p>Remuneração ética de nossas artesãs locais, promovendo emancipação financeira e valorizando a cultura local.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact Section -->
+      <section class="contact" id="contato">
+        <div class="contact-card">
+          <div class="contact-info-block">
+            <h2>Fale Conosco</h2>
+            <p>
+              Dúvidas sobre envios, encomendas sob medida ou quer ajuda para escolher o modelo ideal? Nosso atendimento humanizado está pronto para conversar.
+            </p>
+            <div class="contact-details-list">
+              <div class="contact-detail-item">
+                <span class="detail-icon">📍</span>
+                <span class="detail-text">Ateliê em São Paulo, SP - Envio para todo o Brasil</span>
+              </div>
+              <div class="contact-detail-item">
+                <span class="detail-icon">✉️</span>
+                <span class="detail-text">contato@bolsasoda.com.br</span>
+              </div>
+              <div class="contact-detail-item">
+                <span class="detail-icon">💬</span>
+                <span class="detail-text">WhatsApp: (11) 99999-9999</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="contact-form-block">
+            <h3>Envie uma Mensagem</h3>
+            <form class="contact-form" id="main-contact-form" onsubmit="submitForm(event)">
+              <div class="form-group">
+                <input type="text" id="contact-name" placeholder="Seu nome completo" required />
+              </div>
+              <div class="form-group">
+                <input type="email" id="contact-email" placeholder="Seu e-mail principal" required />
+              </div>
+              <div class="form-group">
+                <textarea id="contact-message" placeholder="Escreva aqui sua dúvida ou solicitação de modelo personalizado..." required></textarea>
+              </div>
+              <button type="submit" class="submit-btn" id="contact-submit-btn">Enviar Mensagem</button>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Novo Container de Detalhe de Produto -->
+    <div id="product-detail-view" class="product-detail-view" style="display: none;"></div>
 
     <!-- Footer -->
     <footer class="main-footer">

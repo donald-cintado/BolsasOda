@@ -1,10 +1,134 @@
 // ==========================================================================
-// BolsasOda E-Commerce State Management
+// BolsasOda E-Commerce State Management & Product Database
 // ==========================================================================
 let cart = [];
 let appliedCoupon = null;
 let shippingCost = 0;
 let shippingAddress = null;
+
+// Product Catalog Details Database
+const productDetailsDB = {
+  "Bolsa Clássica Terracota": {
+    price: 289,
+    category: "Dia a Dia",
+    badge: "Mais Vendida",
+    rating: 5.0,
+    reviews: 48,
+    images: [
+      "images/bolsa_terracota.png",
+      "https://images.unsplash.com/photo-1590874103328-eac38a683ce7?w=600",
+      "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600"
+    ],
+    description: "Um clássico indispensável do nosso ateliê. Trama firme e estruturada com fios premium de algodão reciclado, oferecendo praticidade e um design rústico sofisticado.",
+    specs: {
+      "Material": "Fio de Algodão 100% Orgânico Reciclado",
+      "Medidas": "32cm (L) x 24cm (A) x 10cm (P)",
+      "Alça": "Crochê macio e anatômico fixo (55cm)",
+      "Fechamento": "Zíper reforçado e forro interno em linho",
+      "Produção": "Feito à mão - Pronta entrega"
+    }
+  },
+  "Bolsa Vintage Marrom": {
+    price: 349,
+    category: "Dia a Dia",
+    badge: "Exclusiva",
+    rating: 4.8,
+    reviews: 32,
+    images: [
+      "images/bolsa_vintage_marrom.png",
+      "https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=600",
+      "https://images.unsplash.com/photo-1591561954557-26941169b49e?w=600"
+    ],
+    description: "Inspirada na estética retrô, esta peça mescla a maleabilidade do crochê com a rigidez do couro nobre. Ideal para quem busca um acessório de personalidade e alta durabilidade.",
+    specs: {
+      "Material": "Cordão de Algodão Encerado e Couro Bovino Premium",
+      "Medidas": "28cm (L) x 22cm (A) x 8cm (P)",
+      "Alça": "Alça regulável e removível em couro legítimo (até 120cm)",
+      "Fechamento": "Botão de madeira entalhado com passador em couro",
+      "Produção": "Artesanal sob encomenda - 3 dias úteis para postagem"
+    }
+  },
+  "Bolsa Boho Natural": {
+    price: 259,
+    category: "Verão/Praia",
+    badge: "Tendência Verão",
+    rating: 4.9,
+    reviews: 54,
+    images: [
+      "images/bolsa_boho_natural.png",
+      "https://images.unsplash.com/photo-1591561954557-26941169b49e?w=600",
+      "https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=600"
+    ],
+    description: "Leve, descontraída e cheia de estilo. Trama aberta confeccionada em fibras naturais macias, finalizada com franjas charmosas que dão movimento ao visual de verão.",
+    specs: {
+      "Material": "Fibras de Juta Natural e Algodão Cru",
+      "Medidas": "30cm (L) x 26cm (A) (sem franjas) x 6cm (P)",
+      "Alça": "Tiras transpassadas de juta com reforço interno",
+      "Fechamento": "Botão magnético embutido e forro interno macio",
+      "Produção": "Feito à mão - Pronta entrega"
+    }
+  },
+  "Bolsa Premium Couro": {
+    price: 459,
+    category: "Premium",
+    badge: "Edição Limitada",
+    rating: 5.0,
+    reviews: 18,
+    images: [
+      "images/bolsa_premium_couro.png",
+      "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=600",
+      "https://images.unsplash.com/photo-1590874103328-eac38a683ce7?w=600"
+    ],
+    description: "Nossa peça mais luxuosa. A união perfeita entre a arte têxtil e a marroquinaria fina. Estrutura lateral e alças em couro de curtume certificado de baixo impacto ecológico.",
+    specs: {
+      "Material": "Fio Náutico Premium de Alta Resistência e Couro Bovino Natural",
+      "Medidas": "26cm (L) x 20cm (A) x 12cm (P)",
+      "Alça": "Alça de mão fixa e alça transversal removível em couro (115cm)",
+      "Fechamento": "Tampo frontal de couro com fecho metálico rotativo",
+      "Produção": "Edição limitada - Poucas unidades disponíveis"
+    }
+  },
+  "Bolsa Cores do Arco-Íris": {
+    price: 319,
+    category: "Verão/Praia",
+    badge: "Edição Especial",
+    rating: 4.7,
+    reviews: 23,
+    images: [
+      "images/bolsa_cores_arcoiris.png",
+      "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600",
+      "https://images.unsplash.com/photo-1590874103328-eac38a683ce7?w=600"
+    ],
+    description: "Vibrante e alegre, esta bolsa listrada é tricotada à mão com fios de tonalidades exclusivas. Um acessório que transforma um visual básico em uma declaração de estilo autoral.",
+    specs: {
+      "Material": "Fios de Algodão Mercerizado com Brilho Sutil",
+      "Medidas": "34cm (L) x 28cm (A) x 8cm (P)",
+      "Alça": "Alça dupla reforçada em crochê ponto alto",
+      "Fechamento": "Zíper invisível de nylon e bolso interno com zíper",
+      "Produção": "Feito à mão - Pronta entrega"
+    }
+  },
+  "Bolsa Tote Artesanal": {
+    price: 379,
+    category: "Dia a Dia",
+    badge: "Clássico",
+    rating: 4.9,
+    reviews: 41,
+    images: [
+      "images/bolsa_tote_artesanal.png",
+      "https://images.unsplash.com/photo-1566150905458-1bf1fc113f0d?w=600",
+      "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600"
+    ],
+    description: "Desenvolvida para a mulher dinâmica que necessita de espaço sem perder o estilo. Trama super resistente, comporta notebooks de até 13 polegadas, livros e os seus itens diários.",
+    specs: {
+      "Material": "Fio Náutico de Alta Densidade e fundo estruturado",
+      "Medidas": "38cm (L) x 32cm (A) x 12cm (P)",
+      "Alça": "Alça de ombro ergonômica em couro (60cm)",
+      "Fechamento": "Fecho de mosquetão metálico interno e bolsos organizadores",
+      "Produção": "Artesanal sob encomenda - 4 dias úteis para postagem"
+    }
+  }
+};
 
 // Valid Coupons
 const coupons = {
@@ -33,6 +157,12 @@ function formatPrice(value) {
 
 // Scroll to specific section smoothly
 function scrollToSection(id) {
+  // If product detail view is active, close it first
+  const detailView = document.getElementById("product-detail-view");
+  if (detailView && detailView.style.display !== "none") {
+    closeProductDetailsWithoutScroll();
+  }
+
   const section = document.getElementById(id);
   if (section) {
     // Close mobile menu if active
@@ -65,8 +195,11 @@ window.addEventListener("scroll", () => {
     header.classList.remove("scrolled");
   }
 
-  // Active section indicator
-  updateActiveNavLink();
+  // Active section indicator (only if main storefront is visible)
+  const storefront = document.getElementById("storefront-view");
+  if (storefront && storefront.style.display !== "none") {
+    updateActiveNavLink();
+  }
 });
 
 function updateActiveNavLink() {
@@ -578,4 +711,147 @@ function submitForm(event) {
   
   alert(`Obrigado pelo seu contato, ${name}! Recebemos a sua mensagem e responderemos no e-mail: ${email} em até 24 horas.`);
   event.target.reset();
+}
+
+// ==========================================================================
+// PRODUCT DETAIL DYNAMIC VIEW (SPA PATHWAYS)
+// ==========================================================================
+function openProductDetails(name) {
+  const product = productDetailsDB[name];
+  if (!product) return;
+
+  const detailViewContainer = document.getElementById("product-detail-view");
+  
+  const htmlContent = `
+    <div class="product-detail-view-container">
+      <button class="back-to-catalog-btn" onclick="closeProductDetails()">
+        ← Voltar para a Coleção
+      </button>
+      
+      <div class="detail-layout-grid">
+        <!-- Coluna Esquerda: Galeria -->
+        <div class="detail-gallery-block">
+          <div class="gallery-main-display">
+            <img src="${product.images[0]}" id="main-detail-image" alt="${name} - Foto principal" />
+          </div>
+          <div class="gallery-thumbnails-strip">
+            ${product.images.map((img, index) => `
+              <div class="thumb-image-wrapper ${index === 0 ? 'active' : ''}" onclick="changeGalleryImage('${img}', this)">
+                <img src="${img}" alt="Miniatura ${index + 1} de ${name}" />
+              </div>
+            `).join("")}
+          </div>
+        </div>
+        
+        <!-- Coluna Direita: Informações -->
+        <div class="detail-info-block">
+          <div class="detail-product-meta">
+            <span class="detail-product-category">${product.category}</span>
+            ${product.badge ? `<span class="detail-product-badge">${product.badge}</span>` : ''}
+          </div>
+          
+          <h2 class="detail-product-title">${name}</h2>
+          
+          <div class="detail-product-rating">
+            <span class="stars">${'★'.repeat(Math.floor(product.rating))}${'☆'.repeat(5 - Math.floor(product.rating))}</span>
+            <span class="rating-text">${product.rating.toFixed(1)} (${product.reviews} avaliações)</span>
+          </div>
+          
+          <div class="detail-product-price">
+            <span>${formatPrice(product.price)}</span>
+            <span class="installment-note">ou 3x de ${formatPrice(product.price / 3)} sem juros no cartão</span>
+          </div>
+          
+          <p class="detail-product-desc">${product.description}</p>
+          
+          <div class="detail-specs-table-wrapper">
+            <h4>Características Detalhadas</h4>
+            <table class="detail-specs-table">
+              <tbody>
+                ${Object.entries(product.specs).map(([label, value]) => `
+                  <tr>
+                    <td class="spec-label">${label}</td>
+                    <td class="spec-value">${value}</td>
+                  </tr>
+                `).join("")}
+              </tbody>
+            </table>
+          </div>
+          
+          <div class="detail-buy-button-wrapper">
+            <button class="cta-button detail-add-to-cart-btn" onclick="addToCart('${name}', ${product.price})">
+              Adicionar à Sacola de Compras 👜
+            </button>
+          </div>
+          
+          <ul class="detail-trust-benefits">
+            <li class="benefit-item">
+              <span class="benefit-icon">🚚</span>
+              <span>Frete grátis conforme sua região (consulte digitando o CEP)</span>
+            </li>
+            <li class="benefit-item">
+              <span class="benefit-icon">🌿</span>
+              <span>100% fios orgânicos e ecologicamente responsáveis</span>
+            </li>
+            <li class="benefit-item">
+              <span class="benefit-icon">🔒</span>
+              <span>Compra garantida & suporte direto pelo WhatsApp</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  `;
+
+  detailViewContainer.innerHTML = htmlContent;
+
+  // Toggle View Containers
+  document.getElementById("storefront-view").style.display = "none";
+  detailViewContainer.style.display = "block";
+  
+  // Reset scroll to top of page
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function closeProductDetailsWithoutScroll() {
+  document.getElementById("product-detail-view").style.display = "none";
+  document.getElementById("storefront-view").style.display = "block";
+  document.body.style.overflow = ""; // Ensure scrolling is enabled
+}
+
+function closeProductDetails() {
+  closeProductDetailsWithoutScroll();
+  
+  // Scroll to catalog section dynamically
+  const section = document.getElementById("produtos");
+  if (section) {
+    const offset = 80;
+    const bodyRect = document.body.getBoundingClientRect().top;
+    const elementRect = section.getBoundingClientRect().top;
+    const elementPosition = elementRect - bodyRect;
+    const offsetPosition = elementPosition - offset;
+
+    window.scrollTo({
+      top: offsetPosition,
+      behavior: "smooth"
+    });
+  }
+}
+
+function changeGalleryImage(imgUrl, thumbEl) {
+  const mainImage = document.getElementById("main-detail-image");
+  if (!mainImage) return;
+
+  // Add transition fade effect
+  mainImage.style.opacity = "0.3";
+  
+  setTimeout(() => {
+    mainImage.src = imgUrl;
+    mainImage.style.opacity = "1";
+  }, 150);
+
+  // Toggle active class on thumbnails
+  const thumbnails = document.querySelectorAll(".thumb-image-wrapper");
+  thumbnails.forEach((t) => t.classList.remove("active"));
+  thumbEl.classList.add("active");
 }
