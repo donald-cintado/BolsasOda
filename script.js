@@ -14,11 +14,11 @@ const productDetailsDB = {
     badge: "Mais Vendida",
     rating: 5.0,
     reviews: 48,
-    images: [
-      "images/bolsa_terracota.png",
-      "https://images.unsplash.com/photo-1590874103328-eac38a683ce7?w=600",
-      "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600"
-    ],
+    images: ["images/bolsa_terracota.png"],
+    zoomOrigins: {
+      texture: "50% 50%",
+      detail: "25% 35%"
+    },
     description: "Um clássico indispensável do nosso ateliê. Trama firme e estruturada com fios premium de algodão reciclado, oferecendo praticidade e um design rústico sofisticado.",
     specs: {
       "Material": "Fio de Algodão 100% Orgânico Reciclado",
@@ -34,11 +34,11 @@ const productDetailsDB = {
     badge: "Exclusiva",
     rating: 4.8,
     reviews: 32,
-    images: [
-      "images/bolsa_vintage_marrom.png",
-      "https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=600",
-      "https://images.unsplash.com/photo-1591561954557-26941169b49e?w=600"
-    ],
+    images: ["images/bolsa_vintage_marrom.png"],
+    zoomOrigins: {
+      texture: "50% 50%",
+      detail: "45% 65%"
+    },
     description: "Inspirada na estética retrô, esta peça mescla a maleabilidade do crochê com a rigidez do couro nobre. Ideal para quem busca um acessório de personalidade e alta durabilidade.",
     specs: {
       "Material": "Cordão de Algodão Encerado e Couro Bovino Premium",
@@ -54,11 +54,11 @@ const productDetailsDB = {
     badge: "Tendência Verão",
     rating: 4.9,
     reviews: 54,
-    images: [
-      "images/bolsa_boho_natural.png",
-      "https://images.unsplash.com/photo-1591561954557-26941169b49e?w=600",
-      "https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=600"
-    ],
+    images: ["images/bolsa_boho_natural.png"],
+    zoomOrigins: {
+      texture: "50% 55%",
+      detail: "70% 80%"
+    },
     description: "Leve, descontraída e cheia de estilo. Trama aberta confeccionada em fibras naturais macias, finalizada com franjas charmosas que dão movimento ao visual de verão.",
     specs: {
       "Material": "Fibras de Juta Natural e Algodão Cru",
@@ -74,11 +74,11 @@ const productDetailsDB = {
     badge: "Edição Limitada",
     rating: 5.0,
     reviews: 18,
-    images: [
-      "images/bolsa_premium_couro.png",
-      "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=600",
-      "https://images.unsplash.com/photo-1590874103328-eac38a683ce7?w=600"
-    ],
+    images: ["images/bolsa_premium_couro.png"],
+    zoomOrigins: {
+      texture: "50% 60%",
+      detail: "45% 25%"
+    },
     description: "Nossa peça mais luxuosa. A união perfeita entre a arte têxtil e a marroquinaria fina. Estrutura lateral e alças em couro de curtume certificado de baixo impacto ecológico.",
     specs: {
       "Material": "Fio Náutico Premium de Alta Resistência e Couro Bovino Natural",
@@ -94,11 +94,11 @@ const productDetailsDB = {
     badge: "Edição Especial",
     rating: 4.7,
     reviews: 23,
-    images: [
-      "images/bolsa_cores_arcoiris.png",
-      "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600",
-      "https://images.unsplash.com/photo-1590874103328-eac38a683ce7?w=600"
-    ],
+    images: ["images/bolsa_cores_arcoiris.png"],
+    zoomOrigins: {
+      texture: "55% 55%",
+      detail: "45% 15%"
+    },
     description: "Vibrante e alegre, esta bolsa listrada é tricotada à mão com fios de tonalidades exclusivas. Um acessório que transforma um visual básico em uma declaração de estilo autoral.",
     specs: {
       "Material": "Fios de Algodão Mercerizado com Brilho Sutil",
@@ -114,11 +114,11 @@ const productDetailsDB = {
     badge: "Clássico",
     rating: 4.9,
     reviews: 41,
-    images: [
-      "images/bolsa_tote_artesanal.png",
-      "https://images.unsplash.com/photo-1566150905458-1bf1fc113f0d?w=600",
-      "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600"
-    ],
+    images: ["images/bolsa_tote_artesanal.png"],
+    zoomOrigins: {
+      texture: "50% 50%",
+      detail: "30% 20%"
+    },
     description: "Desenvolvida para a mulher dinâmica que necessita de espaço sem perder o estilo. Trama super resistente, comporta notebooks de até 13 polegadas, livros e os seus itens diários.",
     specs: {
       "Material": "Fio Náutico de Alta Densidade e fundo estruturado",
@@ -735,11 +735,18 @@ function openProductDetails(name) {
             <img src="${product.images[0]}" id="main-detail-image" alt="${name} - Foto principal" />
           </div>
           <div class="gallery-thumbnails-strip">
-            ${product.images.map((img, index) => `
-              <div class="thumb-image-wrapper ${index === 0 ? 'active' : ''}" onclick="changeGalleryImage('${img}', this)">
-                <img src="${img}" alt="Miniatura ${index + 1} de ${name}" />
-              </div>
-            `).join("")}
+            <!-- Miniatura 1: Geral -->
+            <div class="thumb-image-wrapper active" onclick="changeGalleryView('general', '${product.images[0]}', this)">
+              <img src="${product.images[0]}" alt="Vista Geral de ${name}" style="object-fit: cover;" />
+            </div>
+            <!-- Miniatura 2: Detalhe da Trama -->
+            <div class="thumb-image-wrapper" onclick="changeGalleryView('texture', '${product.images[0]}', this)">
+              <img src="${product.images[0]}" alt="Detalhe da Trama de ${name}" style="object-fit: cover; transform: scale(2.2); transform-origin: ${product.zoomOrigins.texture};" />
+            </div>
+            <!-- Miniatura 3: Alça/Acabamento -->
+            <div class="thumb-image-wrapper" onclick="changeGalleryView('detail', '${product.images[0]}', this)">
+              <img src="${product.images[0]}" alt="Acabamento e Detalhes de ${name}" style="object-fit: cover; transform: scale(2.4); transform-origin: ${product.zoomOrigins.detail};" />
+            </div>
           </div>
         </div>
         
@@ -838,7 +845,7 @@ function closeProductDetails() {
   }
 }
 
-function changeGalleryImage(imgUrl, thumbEl) {
+function changeGalleryView(mode, imgUrl, thumbEl) {
   const mainImage = document.getElementById("main-detail-image");
   if (!mainImage) return;
 
@@ -847,6 +854,19 @@ function changeGalleryImage(imgUrl, thumbEl) {
   
   setTimeout(() => {
     mainImage.src = imgUrl;
+    
+    // Clear styles
+    mainImage.style.transform = "";
+    mainImage.style.transformOrigin = "";
+
+    if (mode === "texture") {
+      mainImage.style.transform = "scale(2.2)";
+      mainImage.style.transformOrigin = thumbEl.querySelector("img").style.transformOrigin;
+    } else if (mode === "detail") {
+      mainImage.style.transform = "scale(2.4)";
+      mainImage.style.transformOrigin = thumbEl.querySelector("img").style.transformOrigin;
+    }
+    
     mainImage.style.opacity = "1";
   }, 150);
 
